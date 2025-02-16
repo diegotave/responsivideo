@@ -13,13 +13,16 @@ html, body {
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
+  min-width: 360px; /* Limita el ancho mínimo de la página */
+  width: 100vw; /* Asegura que el ancho siempre sea del 100% de la vista */
+  overflow-x: hidden; /* Evita el desbordamiento horizontal */
 }
 
 /* Header */
 .Header {
   width: 100%;
-  max-width: 1920px; /* Limita el ancho máximo a 1920px */
-  height: 10vh; /* Proporción de altura 10vh */
+  max-width: 1920px;
+  height: 10vh;
   background-color: lightblue;
   box-sizing: border-box;
   display: flex;
@@ -28,24 +31,24 @@ html, body {
 }
 
 .HeaderContent {
-  width: 100%; /* Ocupa el 100% del contenedor header */
-  height: 100%; /* Ocupa el 100% de la altura del header */
-  min-width: 720px; /* Asegura que el ancho no sea menor a 720px */
+  width: 100%;
+  height: 100%;
+  min-width: 720px;
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
 .logo {
-  height: 100%; /* Ocupa el 100% de la altura del header */
+  height: 100%;
   display: flex;
-  align-items: center; /* Centra la imagen verticalmente */
+  align-items: center;
 }
 
 .logo img {
-  height: 100%; /* La imagen ocupa el 100% de la altura de su contenedor */
-  object-fit: contain; /* Mantiene la proporción de la imagen */
-  object-position: left; /* Alinea la imagen a la izquierda */
+  height: 100%;
+  object-fit: contain;
+  object-position: left;
 }
 
 .navbar ul {
@@ -63,71 +66,104 @@ html, body {
 /* Main Section */
 .Main {
   display: flex;
-  justify-content: flex-start;
+  flex-direction: row;
+  justify-content: center;
   align-items: stretch;
   width: 100%;
-  height: calc(100vw * (1080 / 1920)); /* Calcula la altura proporcional */
-  max-height: 1080px; /* Establece un límite superior de altura de 1080px */
-  margin: 0 auto;
-  box-sizing: border-box;
-  max-width: 1920px; /* Ancho máximo de 1920px */
+  max-width: 1920px;
+  height: calc(100vw * (1080 / 1920)); /* Mantiene la proporción de 1920x1080 */
 }
 
-/* Estilos para los contenedores */
+/* Contenedores */
 .container {
-  height: 100%; /* 100% de la altura del viewport */
-  max-height: 1080px; /* La altura máxima de cada contenedor es 1080px */
+  height: 100%;
 }
 
-.left {
+.left,
+.right {
   width: 48px;
-  background-color: rgba(255, 0, 0, 0.5); /* Rojo */
+  background-color: rgba(255, 0, 0, 0.5); /* Rojo para left */
+}
+
+.right {
+  background-color: rgba(255, 165, 0, 0.5); /* Naranja */
+}
+
+.central1,
+.central2,
+.central3 {
+  width: 608px;
 }
 
 .central1 {
-  width: 608px;
   background-color: rgba(0, 255, 0, 0.5); /* Verde */
 }
 
 .central2 {
-  width: 608px;
   background-color: rgba(255, 255, 0, 0.5); /* Amarillo */
 }
 
 .central3 {
-  width: 608px;
   background-color: rgba(0, 0, 255, 0.5); /* Azul */
 }
 
-.right {
-  width: 48px;
-  background-color: rgba(255, 165, 0, 0.5); /* Naranja */
+/* Media query para pantallas menores a 720px */
+@media (max-width: 720px) {
+  .Main {
+    width: 100vw; /* Fija el ancho en función de la vista */
+    height: 2560px; /* Altura ajustada a 2560px cuando el ancho es 720px */
+    flex-direction: column; /* Apilamos los contenedores */
+  }
+
+  /* Ajuste proporcional de altura cuando el ancho se reduce */
+  .Main {
+    height: calc(1280px + (2560px - 1280px) * (1 - (100vw - 360) / (720 - 360)));
+  }
+
+  /* Ocultamos los laterales */
+  .left,
+  .right {
+    display: none;
+  }
+
+  /* Apilamos los contenedores correctamente */
+  .central1,
+  .central2 {
+    width: 100%; /* Ocupan todo el ancho */
+    height: 1280px; /* Mantienen su altura */
+    display: flex; /* Asegura que los hijos respeten el tamaño */
+    align-items: center;
+    justify-content: center;
+  }
+
+  /* Cambiar el orden de los contenedores */
+  .central1 {
+    order: 2; /* Ahora el contenedor central1 se pone después de central2 */
+  }
+
+  .central2 {
+    order: 1; /* El contenedor central2 va primero */
+  }
+
+  /* Eliminar el contenedor central3 en pantallas menores a 720px */
+  .central3 {
+    display: none;
+  }
 }
 
-/* Responsividad para pantallas menores a 720px */
-@media (max-width: 720px) {
-  .HeaderContent {
-    width: 100%; /* Asegura que los elementos dentro de header se distribuyan */
-    flex-direction: column; /* Cambia a una columna cuando el tamaño es pequeño */
-    justify-content: center;
-    align-items: center;
+/* Asegurando que toda la página se ajuste a 1vh */
+@media (min-width: 720px) {
+  html, body {
+    height: 100vh; /* Asegura que todo ocupe el 100% de la altura */
+    width: 100vw;
+    max-width: 1920px; /* No más de 1920px */
   }
 
+  /* Ajustar las dimensiones a 1vh */
   .Main {
-    width: 100%; /* Los contenedores ocupan el 100% del ancho disponible */
-    height: auto; /* La altura se ajusta automáticamente según el contenido */
-  }
-
-  .container {
-    width: 100%; /* Cada contenedor ocupa el 100% del ancho disponible */
-    height: 33.33%; /* Ocupa un tercio de la altura */
-  }
-
-  .left, .right {
-    width: 100%; /* Los contenedores laterales también ocupan el 100% */
-  }
-
-  .central1, .central2, .central3 {
-    width: 100%; /* Los contenedores centrales ocupan el 100% */
+    height: 100vh; /* Ocupa el 100% de la altura de la vista */
+    width: 100vw; /* 100% del ancho */
+    flex-direction: row;
+    justify-content: center;
   }
 }
