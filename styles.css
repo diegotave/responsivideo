@@ -1,0 +1,133 @@
+/* Reset básico */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+/* Header */
+.Header {
+  width: 100%;
+  max-width: 1920px; /* Limita el ancho máximo a 1920px */
+  height: 10vh; /* Proporción de altura 10vh */
+  background-color: lightblue;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.HeaderContent {
+  width: 100%; /* Ocupa el 100% del contenedor header */
+  height: 100%; /* Ocupa el 100% de la altura del header */
+  min-width: 720px; /* Asegura que el ancho no sea menor a 720px */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  height: 100%; /* Ocupa el 100% de la altura del header */
+  display: flex;
+  align-items: center; /* Centra la imagen verticalmente */
+}
+
+.logo img {
+  height: 100%; /* La imagen ocupa el 100% de la altura de su contenedor */
+  object-fit: contain; /* Mantiene la proporción de la imagen */
+  object-position: left; /* Alinea la imagen a la izquierda */
+}
+
+.navbar ul {
+  list-style: none;
+  display: flex;
+  gap: 20px;
+}
+
+.navbar a {
+  text-decoration: none;
+  color: black;
+  font-weight: bold;
+}
+
+/* Main Section */
+.Main {
+  display: flex;
+  justify-content: flex-start;
+  align-items: stretch;
+  width: 100%;
+  height: calc(100vw * (1080 / 1920)); /* Calcula la altura proporcional */
+  max-height: 1080px; /* Establece un límite superior de altura de 1080px */
+  margin: 0 auto;
+  box-sizing: border-box;
+  max-width: 1920px; /* Ancho máximo de 1920px */
+}
+
+/* Estilos para los contenedores */
+.container {
+  height: 100%; /* 100% de la altura del viewport */
+  max-height: 1080px; /* La altura máxima de cada contenedor es 1080px */
+}
+
+.left {
+  width: 48px;
+  background-color: rgba(255, 0, 0, 0.5); /* Rojo */
+}
+
+.central1 {
+  width: 608px;
+  background-color: rgba(0, 255, 0, 0.5); /* Verde */
+}
+
+.central2 {
+  width: 608px;
+  background-color: rgba(255, 255, 0, 0.5); /* Amarillo */
+}
+
+.central3 {
+  width: 608px;
+  background-color: rgba(0, 0, 255, 0.5); /* Azul */
+}
+
+.right {
+  width: 48px;
+  background-color: rgba(255, 165, 0, 0.5); /* Naranja */
+}
+
+/* Responsividad para pantallas menores a 720px */
+@media (max-width: 720px) {
+  .HeaderContent {
+    width: 100%; /* Asegura que los elementos dentro de header se distribuyan */
+    flex-direction: column; /* Cambia a una columna cuando el tamaño es pequeño */
+    justify-content: center;
+    align-items: center;
+  }
+
+  .Main {
+    width: 100%; /* Los contenedores ocupan el 100% del ancho disponible */
+    height: auto; /* La altura se ajusta automáticamente según el contenido */
+  }
+
+  .container {
+    width: 100%; /* Cada contenedor ocupa el 100% del ancho disponible */
+    height: 33.33%; /* Ocupa un tercio de la altura */
+  }
+
+  .left, .right {
+    width: 100%; /* Los contenedores laterales también ocupan el 100% */
+  }
+
+  .central1, .central2, .central3 {
+    width: 100%; /* Los contenedores centrales ocupan el 100% */
+  }
+}
