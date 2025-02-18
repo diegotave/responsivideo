@@ -41,8 +41,8 @@ main {
       height: 100%;
       object-fit: cover;
 
-      /* Asegurar que el video se mantenga centrado en la franja visible */
-      left: 50%;
+      /* Mover el video 100px hacia la derecha */
+      left: calc(50% + 100px);
       transform: translateX(-50%) translateY(-50%);
   }
 }
