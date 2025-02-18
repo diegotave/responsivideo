@@ -35,14 +35,14 @@ main {
   transform: translate(-50%, -50%);
 }
 
-/* En móviles: ajustar el ancho para que el video tenga proporción 9:16 */
 @media (max-width: 768px) {
   .video-container video {
       width: auto;
       height: 100%;
       object-fit: cover;
-      
-      /* Ajusta esto manualmente en VS Code para mover el encuadre */
-      transform: translateX(-10%) translateY(-50%);
+
+      /* Asegurar que el video se mantenga centrado en la franja visible */
+      left: 50%;
+      transform: translateX(-50%) translateY(-50%);
   }
 }
