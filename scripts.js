@@ -1,21 +1,42 @@
-document.addEventListener('DOMContentLoaded', function() {
-  // Obtener todos los videos por su id
-  const video1 = document.getElementById('video1');
-  const video2 = document.getElementById('video2');
-  const video3 = document.getElementById('video3');
+document.addEventListener("DOMContentLoaded", () => {
+  const videos = document.querySelectorAll("video");
 
-  // Aseguramos que todos los videos estén listos para reproducirse
-  function checkReady() {
-    if (video1.readyState >= 3 && video2.readyState >= 3 && video3.readyState >= 3) {
-      // Reproducir todos los videos al mismo tiempo
-      video1.play();
-      video2.play();
-      video3.play();
-    }
+  if (videos.length < 2) return; // Si hay menos de 2 videos, no hacer nada
+
+  let masterVideo = videos[0]; // Tomamos el primer video como referencia
+
+  // Función para sincronizar los otros videos con el maestro
+  function syncVideos() {
+    videos.forEach((video) => {
+      if (video !== masterVideo) {
+        video.currentTime = masterVideo.currentTime; // Igualamos el tiempo
+        if (masterVideo.paused) {
+          video.pause(); // Si el maestro se pausa, los demás también
+        } else {
+          video.play(); // Si el maestro se reproduce, los demás también
+        }
+      }
+    });
   }
 
-  // Esperamos a que los tres videos estén listos
-  video1.addEventListener('canplaythrough', checkReady);
-  video2.addEventListener('canplaythrough', checkReady);
-  video3.addEventListener('canplaythrough', checkReady);
+  // Asegurar que todos los videos comiencen al mismo tiempo
+  function startVideos() {
+    videos.forEach((video) => {
+      video.play().catch((error) => console.error("Error al reproducir:", error));
+    });
+
+    setTimeout(() => {
+      masterVideo.play(); // Asegurar que el maestro arranque
+    }, 100);
+  }
+
+  // Sincronizar cuando cambie el tiempo en el video maestro
+  masterVideo.addEventListener("timeupdate", syncVideos);
+
+  // Sincronizar cuando se haga pausa o play en el video maestro
+  masterVideo.addEventListener("play", syncVideos);
+  masterVideo.addEventListener("pause", syncVideos);
+
+  // Iniciar sincronización cuando todos los videos estén cargados
+  Promise.all([...videos].map((v) => v.readyState >= 3)).then(startVideos);
 });
