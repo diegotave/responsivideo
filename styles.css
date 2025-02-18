@@ -30,7 +30,7 @@ main {
 .contIzq, .contCentro, .contDer {
   width: 33.33%;
   height: auto;
-  padding-bottom: 56.25%;
+  padding-bottom: 56.25%; /* Proporción 16:9 */
   position: relative;
   overflow: hidden;
   display: flex;
@@ -79,43 +79,33 @@ main {
   height: 100%;
 }
 
-/* Responsive: Modo móvil */
+/* Responsive: Proporción 9:16 */
 @media (max-width: 768px) {
   body {
+    height: 100vh;
+    width: 100%;
+  }
+
+  main {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    height: 1080px; /* El body tiene una altura fija de 1080px */
-    width: 640px; /* El body tiene un ancho fijo de 640px */
-    margin: 0;
-    padding: 0;
+    width: 100%;
+    height: 100%;
   }
 
-  main {
-    width: 100%; /* Asegura que el main ocupe todo el ancho del body */
-    flex-direction: column; /* Apilamos los contenedores verticalmente */
-    align-items: center; /* Centra los contenedores */
-    padding: 0;
-    height: 100%; /* La altura del main será la misma que la del body */
+  /* Los contenedores ocupan toda la pantalla con proporción 9:16 */
+  .contIzq, .contCentro, .contDer {
+    width: 100%;
+    height: 177.78vw; /* 9:16 proporción */
+    padding-bottom: 0;
   }
 
-  .contCentro {
-    width: 640px; /* El contenedor contCentro tiene un ancho fijo de 640px */
-    height: 1080px; /* El contenedor contCentro tiene una altura fija de 1080px */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-
-  .contCentro video {
-    width: 640px; /* El video dentro de contCentro tendrá un ancho de 640px */
-    height: 1080px; /* El video tendrá una altura de 1080px */
-    object-fit: cover; /* Ajusta el video sin distorsionar */
-  }
-
-  /* Ocultamos los otros contenedores en vista móvil */
-  .contIzq, .contDer {
-    display: none;
+  /* Los videos se ajustan dentro de los contenedores sin distorsionarse */
+  .contIzq video, .contCentro video, .contDer video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
   }
 }
