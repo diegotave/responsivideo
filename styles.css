@@ -1,118 +1,48 @@
-/* Estilos globales */
-body {
-  font-family: Arial, sans-serif;
+/* Reset básico */
+* {
   margin: 0;
   padding: 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-  background-color: #f0f0f0;
-  width: 100%;
-  max-width: 1920px;
-  margin-left: auto;
-  margin-right: auto;
+  box-sizing: border-box;
 }
 
 /* Contenedor principal */
 main {
   display: flex;
-  justify-content: flex-start;
-  align-items: flex-start;
-  width: 100%;
-  height: auto;
-  max-width: 1920px;
-  flex-wrap: wrap;
-  gap: 0;
-}
-
-/* Contenedores de video */
-.contIzq, .contCentro, .contDer {
-  width: 33.33%;
-  height: auto;
-  padding-bottom: 56.25%; /* Proporción 16:9 */
-  position: relative;
-  overflow: hidden;
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-}
-
-/* Video dentro de cada contenedor */
-.contIzq video, .contCentro video, .contDer video {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: auto;
-  height: 100%;
-  object-fit: cover;
-}
-
-/* Contenedor centrado */
-.contCentro {
-  display: flex;
   justify-content: center;
   align-items: center;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  background: black;
 }
 
-.contCentro video {
+/* Contenedor del video */
+.video-container {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+}
+
+/* Video en escritorio (16:9, ocupa toda la pantalla) */
+.video-container video {
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%);
-  width: auto;
+  width: 100%;
   height: 100%;
   object-fit: cover;
+  transform: translate(-50%, -50%);
 }
 
-/* Alineación a la derecha */
-.contDer {
-  position: relative;
-}
-
-.contDer video {
-  position: absolute;
-  top: 0;
-  left: auto;
-  right: 0;
-  width: auto;
-  height: 100%;
-}
-
-/* Responsive: Proporción 9:16 - Mostrar contIzq y ocultar otros contenedores */
-@media (max-width: 640px) {
-  body {
-    height: 100vh;
-    width: 100%;
-  }
-
-  main {
-    display: flex;
-    flex-direction: column; /* Apilamos los contenedores verticalmente */
-    justify-content: flex-start; /* Alineamos los contenedores al principio */
-    align-items: flex-end; /* Alineamos los contenedores a la derecha */
-    width: 100%;
-    height: 100%;
-  }
-
-  /* Los contenedores ocupan toda la pantalla con proporción 9:16 */
-  .contCentro, .contDer {
-    display: none; /* Ocultamos los contenedores contCentro y contDer */
-  }
-
-  .contIzq {
-    width: 100%; /* Ocupa todo el ancho */
-    height: 177.78vw; /* Proporción 9:16 */
-    padding-bottom: 0;
-    display: flex;
-    justify-content: flex-end; /* Alineamos el video a la derecha */
-    align-items: center;
-  }
-
-  /* El video dentro de contIzq se ajusta sin distorsionarse */
-  .contIzq video {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
+/* En móviles: ajustar el ancho para que el video tenga proporción 9:16 */
+@media (max-width: 768px) {
+  .video-container video {
+      width: auto;
+      height: 100%;
+      object-fit: cover;
+      
+      /* Ajusta esto manualmente en VS Code para mover el encuadre */
+      transform: translateX(-10%) translateY(-50%);
   }
 }
