@@ -89,8 +89,8 @@ main {
   main {
     display: flex;
     flex-direction: column; /* Apilamos los contenedores verticalmente */
-    justify-content: center;
-    align-items: center;
+    justify-content: flex-start; /* Alineamos los contenedores al principio */
+    align-items: flex-end; /* Alineamos los contenedores a la derecha */
     width: 100%;
     height: 100%;
   }
@@ -101,7 +101,7 @@ main {
     height: 177.78vw; /* Proporción 9:16 */
     padding-bottom: 0;
     display: flex;
-    justify-content: center;
+    justify-content: flex-end; /* Alineamos los videos a la derecha */
     align-items: center;
   }
 
