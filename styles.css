@@ -79,7 +79,7 @@ main {
   height: 100%;
 }
 
-/* Responsive: Proporción 9:16 - Mostrar contDer y ocultar otros contenedores */
+/* Responsive: Proporción 9:16 - Mostrar contIzq y ocultar otros contenedores */
 @media (max-width: 640px) {
   body {
     height: 100vh;
@@ -96,11 +96,11 @@ main {
   }
 
   /* Los contenedores ocupan toda la pantalla con proporción 9:16 */
-  .contIzq, .contCentro {
-    display: none; /* Ocultamos los contenedores contIzq y contCentro */
+  .contCentro, .contDer {
+    display: none; /* Ocultamos los contenedores contCentro y contDer */
   }
 
-  .contDer {
+  .contIzq {
     width: 100%; /* Ocupa todo el ancho */
     height: 177.78vw; /* Proporción 9:16 */
     padding-bottom: 0;
@@ -109,8 +109,8 @@ main {
     align-items: center;
   }
 
-  /* El video dentro de contDer se ajusta sin distorsionarse */
-  .contDer video {
+  /* El video dentro de contIzq se ajusta sin distorsionarse */
+  .contIzq video {
     width: 100%;
     height: 100%;
     object-fit: cover;
