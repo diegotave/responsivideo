@@ -1,0 +1,121 @@
+/* Estilos globales */
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #f0f0f0;
+  width: 100%;
+  max-width: 1920px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Contenedor principal */
+main {
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  width: 100%;
+  height: auto;
+  max-width: 1920px;
+  flex-wrap: wrap;
+  gap: 0;
+}
+
+/* Contenedores de video */
+.contIzq, .contCentro, .contDer {
+  width: 33.33%;
+  height: auto;
+  padding-bottom: 56.25%;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+/* Video dentro de cada contenedor */
+.contIzq video, .contCentro video, .contDer video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: auto;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Contenedor centrado */
+.contCentro {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.contCentro video {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: auto;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Alineación a la derecha */
+.contDer {
+  position: relative;
+}
+
+.contDer video {
+  position: absolute;
+  top: 0;
+  left: auto;
+  right: 0;
+  width: auto;
+  height: 100%;
+}
+
+/* Responsive: Modo móvil */
+@media (max-width: 768px) {
+  body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 1080px; /* El body tiene una altura fija de 1080px */
+    width: 640px; /* El body tiene un ancho fijo de 640px */
+    margin: 0;
+    padding: 0;
+  }
+
+  main {
+    width: 100%; /* Asegura que el main ocupe todo el ancho del body */
+    flex-direction: column; /* Apilamos los contenedores verticalmente */
+    align-items: center; /* Centra los contenedores */
+    padding: 0;
+    height: 100%; /* La altura del main será la misma que la del body */
+  }
+
+  .contCentro {
+    width: 640px; /* El contenedor contCentro tiene un ancho fijo de 640px */
+    height: 1080px; /* El contenedor contCentro tiene una altura fija de 1080px */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .contCentro video {
+    width: 640px; /* El video dentro de contCentro tendrá un ancho de 640px */
+    height: 1080px; /* El video tendrá una altura de 1080px */
+    object-fit: cover; /* Ajusta el video sin distorsionar */
+  }
+
+  /* Ocultamos los otros contenedores en vista móvil */
+  .contIzq, .contDer {
+    display: none;
+  }
+}
