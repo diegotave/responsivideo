@@ -26,51 +26,58 @@ main {
 
 /* Video de fondo */
 .video-bg {
-  width: 100%;
-  height: 100%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 100vw;
+  height: 100vh;
   object-fit: cover;
+  transform: translate(-50%, -50%);
 }
 
 /* Video superpuesto */
 .video-overlay {
   position: absolute;
   top: 50%;
-  left: 50%;
+  left: calc(50% - 50px); /* Se mueve 50px a la izquierda */
   width: auto;
   height: 100%;
   object-fit: contain;
   pointer-events: none;
   transform: translate(-50%, -50%);
-}
-
-@media (max-width: 768px) and (orientation: portrait) {
-  .video-container video {
-      width: auto;
-      height: 100%;
-      object-fit: cover;
-      left: calc(50% + 100px);
-      transform: translateX(-50%) translateY(-50%);
-  }
-}
-
-@media (max-width: 768px) and (orientation: landscape) {
-  .video-container video {
-      width: 100%;
-      height: auto;
-      object-fit: cover;
-      left: 50%;
-      transform: translateX(-50%) translateY(-50%);
-  }
-}
-@media (max-width: 768px) and (orientation: portrait) {
-  .video-overlay {
-      width: auto;
-      height: 100%;
-      object-fit: cover;
-      left: 50%;
-      transform: translateX(-50%);
-  }
-}
-.video-overlay {
   filter: grayscale(100%);
+}
+
+/* 📱 Ajuste para móviles en vertical */
+@media (max-width: 768px) and (orientation: portrait) {
+  .video-bg {
+      width: 100vw;
+      height: 100vh;
+      object-fit: cover;
+      transform: translate(-50%, -50%);
+  }
+
+  .video-overlay {
+      left: calc(50% - 50px); /* Mantiene el desplazamiento en móviles */
+      width: auto;
+      height: 100%;
+      object-fit: contain;
+  }
+}
+
+/* 📱 Ajuste para móviles en horizontal */
+@media (max-width: 768px) and (orientation: landscape) {
+  .video-bg {
+      width: 100vw;
+      height: 100vh;
+      object-fit: cover;
+      transform: translate(-50%, -50%);
+  }
+
+  .video-overlay {
+      left: calc(50% - 50px);
+      width: auto;
+      height: 100%;
+      object-fit: contain;
+  }
 }
