@@ -16,7 +16,7 @@ main {
   background: black;
 }
 
-/* Contenedor del video */
+/* Contenedor de video */
 .video-container {
   position: relative;
   width: 100vw;
@@ -24,14 +24,22 @@ main {
   overflow: hidden;
 }
 
-/* Video en escritorio (16:9, ocupa toda la pantalla) */
-.video-container video {
-  position: absolute;
-  top: 50%;
-  left: 50%;
+/* Video de fondo */
+.video-bg {
   width: 100%;
   height: 100%;
   object-fit: cover;
+}
+
+/* Video superpuesto */
+.video-overlay {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: auto;
+  height: 100%;
+  object-fit: contain;
+  pointer-events: none;
   transform: translate(-50%, -50%);
 }
 
@@ -40,8 +48,6 @@ main {
       width: auto;
       height: 100%;
       object-fit: cover;
-
-      /* Mover el video 100px a la derecha en vertical */
       left: calc(50% + 100px);
       transform: translateX(-50%) translateY(-50%);
   }
@@ -52,9 +58,19 @@ main {
       width: 100%;
       height: auto;
       object-fit: cover;
-
-      /* Centrar nuevamente en horizontal */
       left: 50%;
       transform: translateX(-50%) translateY(-50%);
   }
+}
+@media (max-width: 768px) and (orientation: portrait) {
+  .video-overlay {
+      width: auto;
+      height: 100%;
+      object-fit: cover;
+      left: 50%;
+      transform: translateX(-50%);
+  }
+}
+.video-overlay {
+  filter: grayscale(100%);
 }
