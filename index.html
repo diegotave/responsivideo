@@ -9,8 +9,14 @@
 <body>
     <main>
         <div class="video-container">
-            <video autoplay loop muted playsinline>
-                <source src="./a_videono.mp4" type="video/mp4">
+            <!-- Video de fondo -->
+            <video class="video-bg" autoplay loop muted playsinline>
+                <source src="./video/a_videono.mp4" type="video/mp4">
+                Tu navegador no soporta el video.
+            </video>
+            <!-- Video superpuesto con transparencia -->
+            <video class="video-overlay" autoplay loop muted playsinline>
+                <source src="./video/auris baila recortado.webm" type="video/webm">
                 Tu navegador no soporta el video.
             </video>
         </div>
