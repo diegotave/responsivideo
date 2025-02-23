@@ -1,83 +1,181 @@
-/* Reset básico */
-* {
+/* Estilos generales para el body */
+body {
   margin: 0;
   padding: 0;
-  box-sizing: border-box;
-}
-
-/* Contenedor principal */
-main {
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 100vw;
   height: 100vh;
-  overflow: hidden;
-  background: black;
-}
-
-/* Contenedor de video */
-.video-container {
+  margin-inline: auto;
   position: relative;
-  width: 100vw;
-  height: 100vh;
-  overflow: hidden;
 }
 
-/* Video de fondo */
+/* Estilos para el contenedor del video de fondo */
 .video-bg {
   position: absolute;
-  top: 50%;
-  left: 50%;
+  top: 0;
+  left: 0;
   width: 100vw;
   height: 100vh;
-  object-fit: cover;
-  transform: translate(-50%, -50%);
-}
+  z-index: -1;
+}f
 
-/* Video superpuesto */
-.video-overlay {
-  position: absolute;
-  top: 50%;
-  left: calc(50% - 50px); /* Se mueve 50px a la izquierda */
-  width: auto;
+.video-bg video {
+  width: 100%;
   height: 100%;
-  object-fit: contain;
-  pointer-events: none;
-  transform: translate(-50%, -50%);
-  filter: grayscale(100%);
+  object-fit: cover;
 }
 
-/* 📱 Ajuste para móviles en vertical */
-@media (max-width: 768px) and (orientation: portrait) {
-  .video-bg {
-      width: 100vw;
-      height: 100vh;
-      object-fit: cover;
-      transform: translate(-50%, -50%);
-  }
-
-  .video-overlay {
-      left: calc(50% - 50px); /* Mantiene el desplazamiento en móviles */
-      width: auto;
-      height: 100%;
-      object-fit: contain;
-  }
+/* Estilos para el video overlay adicional */
+.front-video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh; /* Ocupa todo el alto de la pantalla */
+  z-index: 3; /* Asegura que el video esté adelante */
 }
 
-/* 📱 Ajuste para móviles en horizontal */
-@media (max-width: 768px) and (orientation: landscape) {
+.front-video video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Asegura que el video mantenga la proporción */
+  
+  /* Aplicamos el filtro para poner el video en blanco y negro */
+  filter: grayscale(100%); /* Desatura el video completamente */
+}
+
+
+/* Estilos para el logo */
+.logo {
+  width: calc(100% - 10%);
+  height: calc(100vh - 10%);
+  margin: 5%;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  z-index: 1; /* Asegura que el logo esté encima del video de fondo pero debajo del overlay */
+}
+
+.logo-container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+/* Estilos para el logo */
+.logo {
+  width: calc(100% - 10%);
+  height: calc(100vh - 10%);
+  margin: 5%;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  z-index: 1; /* Asegura que el logo esté encima del video de fondo pero debajo del overlay */
+}
+
+.logo-container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+.logo-text {
+  
+  font-size: 29vw;
+  font-family: sans-serif;
+  text-align: center;
+  white-space: nowrap;
+  border: 6px solid transparent; /* Necesitamos un borde transparente para que se pueda aplicar el gradiente */
+  
+  /* Aplicamos el gradiente horizontal a la tipografía */
+  background-image: linear-gradient(to right, #ff00aa, #0078ff); /* Gradiente horizontal de violeta a azul claro */
+  
+  -webkit-background-clip: text; /* Prefijo para soporte en algunos navegadores */
+  background-clip: text; /* Aplica el gradiente solo al texto */
+  
+  color: transparent; /* Hace el texto transparente para que el gradiente sea visible */
+  
+  /* Establecemos el borde con el mismo gradiente */
+  border-image: linear-gradient(to right, #ff00aa, #0078ff) 1; /* Aplicamos el gradiente al borde */
+}
+
+
+
+
+
+/* Media query para pantallas con relación de aspecto menor o igual a 9:16 (pantallas verticales) */
+@media (max-width: 720px) {
   .video-bg {
-      width: 100vw;
-      height: 100vh;
-      object-fit: cover;
-      transform: translate(-50%, -50%);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: -1;
   }
 
-  .video-overlay {
-      left: calc(50% - 50px);
-      width: auto;
-      height: 100%;
-      object-fit: contain;
+  .video-bg video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transform: none; /* Remover la rotación */
+  }
+
+  /* Asegura que el video de fondo cubra la altura completa en vertical */
+  .video-bg {
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh; /* Se asegura de cubrir toda la altura */
+  }
+
+  .front-video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    z-index: 3;
+  }
+
+  .front-video video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .logo {
+    margin: 5%;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    width: calc(100% - 10%);
+    height: calc(100vh - 10%);
+  }
+
+  .logo-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .logo-text {
+    transform: rotate(-90deg);
+    font-size: 20vh;
+    width: auto;
+    height: 100%;
+    text-align: left;
+    white-space: nowrap;
+    padding: 0% 24% 20%;
   }
 }
