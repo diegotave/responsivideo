@@ -89,8 +89,9 @@ body {
 }
 
 .logo-text {
-  
-  font-size: 29vw;
+  padding-right: 2%;
+  letter-spacing: -0.05em;
+  font-size: 31vw;
   font-family: sans-serif;
   text-align: center;
   white-space: nowrap;
