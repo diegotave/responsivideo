@@ -1,25 +1,32 @@
 <!DOCTYPE html>
-<html lang="es">
-<head>
+<html lang="en">
+  <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Video Responsive</title>
+    <title>Responsive Video</title>
     <link rel="stylesheet" href="styles.css">
-</head>
-<body>
-    <main>
-        <div class="video-container">
-            <!-- Video de fondo -->
-            <video class="video-bg" autoplay loop muted playsinline>
-                <source src="./video/a_videono.mp4" type="video/mp4">
-                Tu navegador no soporta el video.
-            </video>
-            <!-- Video superpuesto con transparencia -->
-            <video class="video-overlay" autoplay loop muted playsinline>
-                <source src="./video/auris baila recortado.webm" type="video/webm">
-                Tu navegador no soporta el video.
-            </video>
-        </div>
-    </main>
-</body>
+  </head>
+  <body class="body">
+    
+    <!-- Video de fondo -->
+    <section class="video-bg">
+      <video autoplay loop muted>
+        <source src="./video/a_videono.mp4" type="video/mp4">
+      </video>
+    </section>
+
+    <!-- Video overlay adicional -->
+    <section class="front-video">
+      <video autoplay loop muted>
+        <source src="./video/auris baila recortado.webm" type="video/webm">
+      </video>
+    </section>
+
+    <!-- Logo -->
+    <section class="logo">
+      <div class="logo-container">
+        <h1 class="logo-text">Phönix</h1>
+      </div>
+    </section>
+  </body>
 </html>
